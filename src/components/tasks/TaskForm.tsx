@@ -34,7 +34,7 @@ export default function TaskForm({addNewTask}: Props) {
 
   return (
     <div className="card card-body bg-secondary text-dark">
-      <h1>Add task</h1>
+      <div className="fs-2 mb-2">Add task</div>
 
       <form onSubmit={handleNewTask}>
         <input
@@ -57,7 +57,7 @@ export default function TaskForm({addNewTask}: Props) {
           value={task.description}
         ></textarea>
 
-        <button className="btn btn-primary">
+        <button className="btn btn-primary text-light">
           <AiOutlinePlus />
           <span>Add</span>
         </button>

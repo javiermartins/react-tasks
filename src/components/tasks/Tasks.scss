@@ -1,0 +1,31 @@
+.circle-button {
+    margin: 0 0.2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.no-border {
+    border: 0;
+}
+
+.task-modal {
+    top: 5rem;
+}
+
+.modal-content {
+    border-radius: 1rem !important;
+}
+
+.modal-header {
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.description-text {
+    height: 15rem;
+}
+
+.title-input {
+    margin-bottom: 0.5rem;
+}

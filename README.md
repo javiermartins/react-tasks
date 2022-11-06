@@ -29,7 +29,7 @@ Web application where you can create, finish or delete pending tasks.
 
 1. Clone the repo
    ```sh
-   
+   git clone https://github.com/javiermartins/react-tasks.git
    ```
 2. Install NPM packages
    ```sh

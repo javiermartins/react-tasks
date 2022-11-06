@@ -1,4 +1,4 @@
-import 'bootswatch/dist/yeti/bootstrap.min.css';
+import './custom.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
