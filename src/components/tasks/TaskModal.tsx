@@ -1,7 +1,10 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useEffect, useState } from "react";
-import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { Task } from "../../interfaces/Task.interface";
+import DeleteModal from "./DeleteModal";
 import "./Tasks.scss";
 
 interface Props {
@@ -9,6 +12,7 @@ interface Props {
   show: boolean;
   handleClose: any;
   editTask: (task: Task) => void;
+  deleteTask: (id: number) => void;
 }
 
 type HandleInputChange = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
@@ -16,10 +20,13 @@ type HandleInputChange = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 export default function TaskModal({
   task,
   editTask,
+  deleteTask,
   show,
   handleClose,
 }: Props) {
   const [editedTask, setEditedTask] = useState(task);
+  const [showDelete, setShowDelete] = useState(false);
+  const handleCloseDelete = () => setShowDelete(false);
 
   useEffect(() => {
     editTask(editedTask);
@@ -43,7 +50,7 @@ export default function TaskModal({
             type="text"
             name="title"
             placeholder="Title"
-            className="no-border title-input"
+            className="border-0 title-input"
             defaultValue={task.title}
             onChange={handleInputChange}
           />
@@ -51,12 +58,27 @@ export default function TaskModal({
             as="textarea"
             name="description"
             placeholder="Description"
-            className="no-border description-text"
+            className="border-0 description-text"
             defaultValue={task.description}
             onChange={handleInputChange}
           />
         </Modal.Body>
+        <Modal.Footer className="justify-content-between">
+          <button
+            className="btn btn-danger col-md-2 circle-button text-light"
+            onClick={() => setShowDelete(true)}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </Modal.Footer>
       </Modal>
+
+      <DeleteModal
+        task={task}
+        deleteTask={deleteTask}
+        show={showDelete}
+        handleClose={handleCloseDelete}
+      />
     </>
   );
 }

@@ -29,11 +29,11 @@ export default function Tasks() {
 
   return (
     <main className="container p-4">
-      <div className="row">
-        <div className="col-md-4">
+      <div className="row justify-content-center">
+        <div className="col-6 mb-4">
           <TaskForm addNewTask={addNewTask} />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-12">
           <div className="row">
             <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
           </div>

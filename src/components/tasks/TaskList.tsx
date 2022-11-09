@@ -11,7 +11,7 @@ export default function TaskList({ tasks, editTask, deleteTask }: Props) {
   return (
     <>
       {tasks.map((task) => (
-        <div className="col-md-6 col-lg-4 pb-2" key={task.id}>
+        <div className="col-md-4 col-lg-3 pb-2" key={task.id}>
             <TaskCard task={task} editTask={editTask} deleteTask={deleteTask}/>
         </div>
       ))}
