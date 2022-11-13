@@ -18,7 +18,7 @@ export default function TaskCard({ task, editTask, deleteTask }: Props) {
     <div className="card card-body bg-secondary text-dark rounded-2 task-card">
       <div onClick={() => setShow(true)}>
         <div className="fs-3 mb-2">{task.id} {task.title}</div>
-        <p>{task.description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>{task.description}</p>
       </div>
 
       <TaskModal task={task} editTask={editTask} 
