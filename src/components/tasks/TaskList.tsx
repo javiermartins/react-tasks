@@ -3,7 +3,7 @@ import TaskCard from "./TaskCard";
 
 interface Props {
   tasks: Task[];
-  deleteTask: (id: number) => void;
+  deleteTask: (id: string) => void;
   editTask: (task: Task) => void;
 }
 

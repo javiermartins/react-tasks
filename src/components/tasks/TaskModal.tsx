@@ -12,7 +12,7 @@ interface Props {
   show: boolean;
   handleClose: any;
   editTask: (task: Task) => void;
-  deleteTask: (id: number) => void;
+  deleteTask: (id: string) => void;
 }
 
 type HandleInputChange = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;

@@ -6,7 +6,7 @@ import "./Tasks.scss";
 
 interface Props {
   task: Task;
-  deleteTask: (id: number) => void;
+  deleteTask: (id: string) => void;
   show: boolean;
   handleClose: any;
 }

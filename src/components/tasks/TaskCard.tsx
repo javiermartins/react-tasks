@@ -5,7 +5,7 @@ import TaskModal from "./TaskModal";
 interface Props {
   task: Task;
   editTask: (task: Task) => void;
-  deleteTask: (id: number) => void;
+  deleteTask: (id: string) => void;
 }
 
 export default function TaskCard({ task, editTask, deleteTask }: Props) {
@@ -17,7 +17,7 @@ export default function TaskCard({ task, editTask, deleteTask }: Props) {
   return (
     <div className="card card-body bg-secondary text-dark rounded-2 task-card">
       <div onClick={() => setShow(true)}>
-        <div className="fs-3 mb-2">{task.id} {task.title}</div>
+        <div className="fs-3 mb-2">{task.title}</div>
         <p style={{ whiteSpace: "pre-wrap" }}>{task.description}</p>
       </div>
 

@@ -3,6 +3,7 @@ import { Task } from "../../interfaces/Task.interface";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 import "./Tasks.scss";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -16,12 +17,12 @@ export default function Tasks() {
   }, [])
 
   const addNewTask = (task: Task) => {
-    const newTasks = [...tasks, { ...task, id: tasks.length + 1 }];
+    const newTasks = [...tasks, { ...task, id: uuidv4() }];
     localStorage.setItem('tasks', JSON.stringify(newTasks));
     setTasks(newTasks);
   }
 
-  const deleteTask = (id: number) => {
+  const deleteTask = (id: string) => {
     const validTasks = tasks.filter((task) => task.id !== id);
     localStorage.setItem('tasks', JSON.stringify(validTasks));
     setTasks(validTasks);
