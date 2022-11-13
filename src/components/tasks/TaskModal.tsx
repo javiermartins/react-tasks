@@ -1,4 +1,4 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -38,6 +38,10 @@ export default function TaskModal({
     setEditedTask({ ...editedTask, [name]: value });
   };
 
+  const changeDoneTask = () => {
+    setEditedTask({ ...editedTask, completed: !task.completed });
+  };
+
   return (
     <>
       <Modal dialogClassName="task-modal" show={show} onHide={handleClose}>
@@ -50,7 +54,7 @@ export default function TaskModal({
             type="text"
             name="title"
             placeholder="Title"
-            className="border-0 title-input"
+            className={`border-0 title-input ${task.completed ? 'task-completed': ''}`}
             defaultValue={task.title}
             onChange={handleInputChange}
           />
@@ -58,12 +62,18 @@ export default function TaskModal({
             as="textarea"
             name="description"
             placeholder="Description"
-            className="border-0 description-text"
+            className={`border-0 description-text ${task.completed ? 'task-completed': ''}`}
             defaultValue={task.description}
             onChange={handleInputChange}
           />
         </Modal.Body>
         <Modal.Footer className="justify-content-between">
+          <button
+            className={`btn col-md-2 circle-button ${task.completed ? 'btn-success text-light' : 'btn-secondary'}`}
+            onClick={() => changeDoneTask()}
+          >
+            <FontAwesomeIcon icon={faCheck} />
+          </button>
           <button
             className="btn btn-danger col-md-2 circle-button text-light"
             onClick={() => setShowDelete(true)}
