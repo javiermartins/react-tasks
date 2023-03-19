@@ -1,16 +1,10 @@
 import "./App.css";
-import Tasks from "./components/tasks/Tasks";
-import Toolbar from "./components/Toolbar";
+import Routing from "./routes/Routing";
 
-interface Props {
-  title?: string;
-}
-
-export function App({ title }: Props) {
+export function App() {
   return (
-    <div className="main bg-dark text-white">
-      <Toolbar title={title} />
-      <Tasks />
+    <div className="bg-dark text-white">
+      <Routing />
     </div>
   );
 }
