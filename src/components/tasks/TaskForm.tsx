@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Task } from "../../interfaces/Task.interface";
-import { Toast, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
   addNewTask: (task: Task) => void;
@@ -12,12 +13,11 @@ type HandleInputChange = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 const initialTask = {
   title: "",
   description: "",
-  completed: false
+  completed: false,
 };
 
 export default function TaskForm({ addNewTask }: Props) {
   const [task, setTask] = useState(initialTask);
-  const [showToast, setToast] = useState(false)
   const inputTitle = useRef<HTMLInputElement>(null);
 
   const handleInputChange = ({
@@ -33,7 +33,7 @@ export default function TaskForm({ addNewTask }: Props) {
       setTask(initialTask);
       inputTitle.current?.focus();
     } else {
-      setToast(true)
+      toast.warning("Add a title or description");
     }
   };
 
@@ -61,18 +61,8 @@ export default function TaskForm({ addNewTask }: Props) {
             value={task.description}
           ></textarea>
 
-          <Toast
-            style={{ marginBottom: "1rem" }}
-            onClose={() => setToast(false)}
-            autohide
-            show={showToast}
-            delay={2200}
-          >
-            <Toast.Body>Add a title or description</Toast.Body>
-          </Toast>
-
-          <button className="btn btn-primary text-light">
-            <AiOutlinePlus />
+          <button className="btn btn-primary text-light rounded-button">
+            <FontAwesomeIcon icon={faAdd} className="mr-icon" />
             <span>Add</span>
           </button>
         </form>

@@ -1,5 +1,5 @@
 import Tasks from "../components/tasks/Tasks";
-import Account from "../pages/Account";
+import Account from "../pages/account/Account";
 
 export default [
   {

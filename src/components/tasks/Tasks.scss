@@ -1,45 +1,46 @@
 .task-card:hover {
-    opacity: 0.9;
-    cursor: pointer;
+  opacity: 0.9;
+  cursor: pointer;
 }
 
 .circle-button {
-    margin: 0 0.2rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  margin: 0 0.2rem !important;
+  width: 40px !important;
+  height: 40px;
+  border-radius: 50% !important;
 }
 
 .task-modal {
-    top: 5rem;
+  top: 5rem;
 }
 
 .delete-modal {
-    margin: 12rem auto;
-    width: 21rem;
-    .modal-dialog {
-        margin: 0;
-    }
+  margin: 12rem auto;
+  width: 21rem;
+  .modal-dialog {
+    margin: 0;
+  }
 }
 
 .modal-content {
-    border-radius: 1rem !important;
+  border-radius: 1rem !important;
 }
 
 .modal-header {
-    padding-top: 1.5rem;
-    padding-right: 1.5rem;
+  padding-top: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .description-text {
-    height: 15rem;
+  height: 15rem;
 }
 
 .title-input {
-    font-size: 20px;
-    margin-bottom: 0.4rem;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.4rem;
 }
 
 .task-completed {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
