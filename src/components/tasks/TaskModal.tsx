@@ -1,9 +1,10 @@
-import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Task } from "../../interfaces/Task.interface";
+import ColorSelector from "./ColorSelector";
 import DeleteModal from "./DeleteModal";
 import "./Tasks.scss";
 
@@ -46,15 +47,19 @@ export default function TaskModal({
     <>
       <Modal dialogClassName="task-modal" show={show} onHide={handleClose}>
         <Modal.Header
-          className="border-0 pb-0 modal-header"
+          style={{ backgroundColor: task.color }}
+          className="border-0 modal-header"
           closeButton
         ></Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ backgroundColor: task.color }}>
           <Form.Control
             type="text"
             name="title"
             placeholder="Title"
-            className={`border-0 title-input ${task.completed ? 'task-completed': ''}`}
+            className={`border-0 title-input ${
+              task.completed ? "task-completed" : ""
+            }`}
+            style={{ backgroundColor: task.color }}
             defaultValue={task.title}
             onChange={handleInputChange}
           />
@@ -62,18 +67,25 @@ export default function TaskModal({
             as="textarea"
             name="description"
             placeholder="Description"
-            className={`border-0 description-text ${task.completed ? 'task-completed': ''}`}
+            className={`border-0 description-text ${
+              task.completed ? "task-completed" : ""
+            }`}
+            style={{ backgroundColor: task.color }}
             defaultValue={task.description}
             onChange={handleInputChange}
           />
         </Modal.Body>
-        <Modal.Footer className="justify-content-between">
+        <Modal.Footer style={{ backgroundColor: task.color }}>
           <button
-            className={`btn col-md-2 circle-button ${task.completed ? 'btn-success text-light' : 'btn-secondary'}`}
+            className={`btn col-md-2 circle-button ${
+              task.completed ? "btn-success text-light" : "btn-secondary"
+            }`}
             onClick={() => changeDoneTask()}
           >
             <FontAwesomeIcon icon={faCheck} />
           </button>
+          <ColorSelector task={task} setEditedTask={setEditedTask} />
+          <span style={{ flex: "1 1 auto" }}></span>
           <button
             className="btn btn-danger col-md-2 circle-button text-light"
             onClick={() => setShowDelete(true)}

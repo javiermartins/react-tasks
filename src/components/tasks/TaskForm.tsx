@@ -14,6 +14,7 @@ const initialTask = {
   title: "",
   description: "",
   completed: false,
+  color: "#ffffff"
 };
 
 export default function TaskForm({ addNewTask }: Props) {

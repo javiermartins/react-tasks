@@ -14,12 +14,17 @@ export default function TaskCard({ task, editTask, deleteTask }: Props) {
   const handleClose = () => setShow(false);
 
   return (
-    <div className="card card-body bg-secondary text-dark rounded-2 task-card">
+    <div
+      className="card card-body text-dark rounded-2 task-card"
+      style={{ backgroundColor: task.color }}
+    >
       <div onClick={() => setShow(true)}>
-        <div className={`fs-3 mb-2 ${task.completed ? 'task-completed': ''}`}>{task.title}</div>
+        <div className={`fs-3 mb-2 ${task.completed ? "task-completed" : ""}`}>
+          {task.title}
+        </div>
         <p
-          className={`${task.completed ? 'task-completed': ''}`}
-          style={{whiteSpace: "pre-wrap"}}
+          className={`${task.completed ? "task-completed" : ""}`}
+          style={{ whiteSpace: "pre-wrap" }}
         >
           {task.description}
         </p>

@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Task } from "../../interfaces/Task.interface";
@@ -11,8 +10,6 @@ interface Props {
   handleClose: any;
 }
 
-type HandleInputChange = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
-
 export default function DeleteModal({
   task,
   deleteTask,
@@ -23,7 +20,7 @@ export default function DeleteModal({
     <Modal dialogClassName="delete-modal" show={show} onHide={handleClose}>
       <Modal.Dialog>
         <Modal.Header closeButton>
-          <Modal.Title>{task.title}</Modal.Title>
+          <Modal.Title className="modal-title">{task.title}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
