@@ -7,6 +7,7 @@ import { Task } from "../../interfaces/Task.interface";
 import ColorSelector from "./ColorSelector";
 import DeleteModal from "./DeleteModal";
 import "./Tasks.scss";
+import Confetti from "react-confetti";
 
 interface Props {
   task: Task;
@@ -27,6 +28,7 @@ export default function TaskModal({
 }: Props) {
   const [editedTask, setEditedTask] = useState(task);
   const [showDelete, setShowDelete] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const handleCloseDelete = () => setShowDelete(false);
 
   useEffect(() => {
@@ -41,11 +43,18 @@ export default function TaskModal({
 
   const changeDoneTask = () => {
     setEditedTask({ ...editedTask, completed: !task.completed });
+    if (!task.completed) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 7000);
+    }
   };
 
   return (
     <>
       <Modal dialogClassName="task-modal" show={show} onHide={handleClose}>
+        {showConfetti && <Confetti width={500} height={440} recycle={false} />}
         <Modal.Header
           style={{ backgroundColor: task.color }}
           className="border-0 modal-header"
