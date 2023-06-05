@@ -8,6 +8,7 @@ import ColorSelector from "./ColorSelector";
 import DeleteModal from "./DeleteModal";
 import "./Tasks.scss";
 import Confetti from "react-confetti";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   task: Task;
@@ -30,6 +31,7 @@ export default function TaskModal({
   const [showDelete, setShowDelete] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const handleCloseDelete = () => setShowDelete(false);
+  const [t] = useTranslation("global");
 
   useEffect(() => {
     editTask(editedTask);
@@ -64,9 +66,9 @@ export default function TaskModal({
           <Form.Control
             type="text"
             name="title"
-            placeholder="Title"
+            placeholder={t("task.title") || ""}
             className={`border-0 title-input ${
-              task.completed ? "task-completed" : ""
+              task.completed && "task-completed"
             }`}
             style={{ backgroundColor: task.color }}
             defaultValue={task.title}
@@ -75,9 +77,9 @@ export default function TaskModal({
           <Form.Control
             as="textarea"
             name="description"
-            placeholder="Description"
+            placeholder={t("task.description") || ""}
             className={`border-0 description-text ${
-              task.completed ? "task-completed" : ""
+              task.completed && "task-completed"
             }`}
             style={{ backgroundColor: task.color }}
             defaultValue={task.description}

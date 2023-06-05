@@ -6,11 +6,16 @@ import { toast } from "react-toastify";
 import userImg from "../../assets/img/user.png";
 import Layout from "../../components/Layout/Layout";
 import "./Account.scss";
+import locales from "../../assets/translations/languages.json";
+import { useTranslation } from "react-i18next";
+
+const version = "1.0.0"
 
 export default function Account() {
   const [user, setUser] = useState(getUser());
   const [editing, setEditing] = useState(false);
   const inputFile = useRef<HTMLInputElement>(null);
+  const [t, i18n] = useTranslation("global");
 
   const cancelSave = (e: any) => {
     e.preventDefault();
@@ -22,7 +27,7 @@ export default function Account() {
     e.preventDefault();
     localStorage.setItem("user", JSON.stringify(user));
     setEditing(false);
-    toast.success("Data successfully saved");
+    toast.success(t("account.dataSaved"));
   };
 
   const changeForm = (e: any) => {
@@ -42,7 +47,12 @@ export default function Account() {
     reader.onerror = function (error) {
       console.log("Error: ", error);
     };
-    console.log(user);
+  };
+
+  const changeLanguage = (locale) => {
+    i18n.changeLanguage(locale);
+    setUser({ ...user, language: locale });
+    localStorage.setItem("user", JSON.stringify({ ...user, language: locale }));
   };
 
   const selectImage = () => {
@@ -65,7 +75,7 @@ export default function Account() {
                     onClick={(e) => cancelSave(e)}
                   >
                     <FontAwesomeIcon icon={faClose} className="mr-icon" />
-                    Cancel
+                    {t("general.cancel")}
                   </Button>
                   <Button
                     type="submit"
@@ -74,7 +84,7 @@ export default function Account() {
                     onClick={() => onSubmit}
                   >
                     <FontAwesomeIcon icon={faSave} className="mr-icon" />
-                    Save
+                    {t("general.save")}
                   </Button>
                 </div>
               ) : (
@@ -84,7 +94,7 @@ export default function Account() {
                   onClick={() => setEditing(true)}
                 >
                   <FontAwesomeIcon icon={faPencil} className="mr-icon" />
-                  Edit
+                  {t("general.edit")}
                 </Button>
               )}
             </div>
@@ -121,7 +131,9 @@ export default function Account() {
                     <Form.Group>
                       <Row>
                         <Col xs={12} sm={12} md lg className="mt-2">
-                          <Form.Label className="text-primary">Name</Form.Label>
+                          <Form.Label className="text-primary">
+                            {t("account.name")}
+                          </Form.Label>
                           <Form.Control
                             type="text"
                             name="name"
@@ -132,7 +144,7 @@ export default function Account() {
                         </Col>
                         <Col xs={12} sm={12} md lg className="mt-2">
                           <Form.Label className="text-primary">
-                            Surnames
+                            {t("account.surnames")}
                           </Form.Label>
                           <Form.Control
                             type="text"
@@ -143,6 +155,24 @@ export default function Account() {
                           />
                         </Col>
                       </Row>
+                      <Row>
+                        <Col className="mt-2">
+                          <Form.Label className="text-primary">
+                            {t("account.language")}
+                          </Form.Label>
+                          <Form.Select
+                            aria-label="Select for language"
+                            onChange={(e) => changeLanguage(e.target.value)}
+                            value={user.language}
+                          >
+                            {Object.keys(locales).map((locale: any) => (
+                              <option key={locale} value={locale}>
+                                {locales[locale].title}
+                              </option>
+                            ))}
+                          </Form.Select>
+                        </Col>
+                      </Row>
                     </Form.Group>
                   </div>
                 </div>
@@ -151,6 +181,9 @@ export default function Account() {
           </div>
         </Form>
       </main>
+      <div className="footer-account bg-primary">
+        <span className="version-tag">{t("general.version")} {version}</span>
+      </div>
     </Layout>
   );
 }
@@ -162,6 +195,7 @@ function getUser() {
     name: "",
     surnames: "",
     photo: "",
+    language: "",
   };
 
   if (userLS) {

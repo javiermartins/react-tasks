@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Task } from "../../interfaces/Task.interface";
 import "./Tasks.scss";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   task: Task;
@@ -16,6 +17,8 @@ export default function DeleteModal({
   show,
   handleClose,
 }: Props) {
+  const [t] = useTranslation("global");
+
   return (
     <Modal dialogClassName="delete-modal" show={show} onHide={handleClose}>
       <Modal.Dialog>
@@ -24,19 +27,19 @@ export default function DeleteModal({
         </Modal.Header>
 
         <Modal.Body>
-          <p>Are you sure you want to delete this task?</p>
+          <p>{t("task.infodeleteTask")}</p>
         </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("general.close")}
           </Button>
           <Button
             variant="danger"
             className="text-light"
             onClick={() => task.id && deleteTask(task.id)}
           >
-            Delete task
+            {t("task.deleteTask")}
           </Button>
         </Modal.Footer>
       </Modal.Dialog>

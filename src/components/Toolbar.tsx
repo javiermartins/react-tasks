@@ -2,9 +2,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.svg";
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 export default function Toolbar() {
+  const [t] = useTranslation("global");
+
   return (
     <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
       <Container>
@@ -19,7 +22,7 @@ export default function Toolbar() {
             <Link to="/account">
               <button className="btn text-light">
                 <FontAwesomeIcon className="fa-2xl mr-icon" icon={faUser} />
-                <span>Account</span>
+                <span>{t("account.account")}</span>
               </button>
             </Link>
           </Nav>

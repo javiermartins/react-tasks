@@ -1,0 +1,24 @@
+{
+  "account": {
+    "account": "Cuenta",
+    "dataSaved": "Datos guardados con éxito",
+    "name": "Nombre",
+    "surnames": "Apellidos",
+    "language": "Idioma"
+  },
+  "general": {
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "edit": "Editar",
+    "save": "Guardar",
+    "version": "Versión"
+  },
+  "task": {
+    "addDataInfo": "Añade un título o una descripción",
+    "add": "Añadir",
+    "deleteTask": "Borrar",
+    "description": "Descripción",
+    "infodeleteTask": "¿Estás seguro de que quieres eliminar esta tarea?",
+    "title": "Título"
+  }
+}

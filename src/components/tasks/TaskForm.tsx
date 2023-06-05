@@ -3,6 +3,7 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { Task } from "../../interfaces/Task.interface";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   addNewTask: (task: Task) => void;
@@ -14,12 +15,13 @@ const initialTask = {
   title: "",
   description: "",
   completed: false,
-  color: "#ffffff"
+  color: "#ffffff",
 };
 
 export default function TaskForm({ addNewTask }: Props) {
   const [task, setTask] = useState(initialTask);
   const inputTitle = useRef<HTMLInputElement>(null);
+  const [t] = useTranslation("global");
 
   const handleInputChange = ({
     target: { name, value },
@@ -34,7 +36,7 @@ export default function TaskForm({ addNewTask }: Props) {
       setTask(initialTask);
       inputTitle.current?.focus();
     } else {
-      toast.warning("Add a title or description");
+      toast.warning(t("task.addDataInfo"));
     }
   };
 
@@ -44,7 +46,7 @@ export default function TaskForm({ addNewTask }: Props) {
         <form onSubmit={handleNewTask}>
           <input
             type="text"
-            placeholder="Title"
+            placeholder={t("task.title") || ""}
             name="title"
             className="form-control mb-3 rounded-3 shadow-none border-0"
             onChange={handleInputChange}
@@ -56,7 +58,7 @@ export default function TaskForm({ addNewTask }: Props) {
           <textarea
             name="description"
             rows={2}
-            placeholder="Description"
+            placeholder={t("task.description") || ""}
             className="form-control mb-3 rounded-3 shadow-none border-0"
             onChange={handleInputChange}
             value={task.description}
@@ -64,7 +66,7 @@ export default function TaskForm({ addNewTask }: Props) {
 
           <button className="btn btn-primary text-light rounded-button">
             <FontAwesomeIcon icon={faAdd} className="mr-icon" />
-            <span>Add</span>
+            <span>{t("task.add")}</span>
           </button>
         </form>
       </div>

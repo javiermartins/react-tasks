@@ -1,0 +1,24 @@
+{
+  "account": {
+    "account": "Account",
+    "dataSaved": "Data successfully saved",
+    "name": "Name",
+    "surnames": "Surnames",
+    "language": "Language"
+  },
+  "general": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "edit": "Edit",
+    "save": "Save",
+    "version": "Version"
+  },
+  "task": {
+    "addDataInfo": "Add a title or description",
+    "add": "Add",
+    "deleteTask": "Delete task",
+    "description": "Description",
+    "infodeleteTask": "Are you sure you want to delete this task?",
+    "title": "Title"
+  }
+}
